@@ -25,7 +25,25 @@
 
 ## 快速開始
 
-### 方式一：使用 degit（推薦，不保留 git 歷史）
+### 方式一：npm create（推薦）
+
+互動式問答，自動設定 proxy target、選擇是否開啟 Orval：
+
+```bash
+npm create modsemi@latest my-app
+cd my-app
+pnpm install
+pnpm dev
+```
+
+也支援 pnpm / yarn：
+
+```bash
+pnpm create modsemi my-app
+yarn create modsemi my-app
+```
+
+### 方式二：使用 degit（不保留 git 歷史）
 
 ```bash
 npx degit your-username/modsemi my-app
@@ -34,7 +52,7 @@ pnpm install
 pnpm dev
 ```
 
-### 方式二：使用 GitHub Template
+### 方式三：使用 GitHub Template
 
 點擊右上角 **"Use this template"** 建立自己的 repo，再 clone 下來：
 
