@@ -47,6 +47,50 @@ pnpm dev
 
 ---
 
+## 環境設定
+
+### API Proxy（本地開發）
+
+複製環境變數範本，依需求調整：
+
+```bash
+cp .env.example .env.local
+```
+
+預設 `MODERN_APP_API_BASE_URL=/api`，搭配 `modern.config.ts` 的 `dev.server.proxy`，所有 `/api/**` 請求會在 Dev Server 端轉發給後端，瀏覽器不會觸發 CORS。修改 proxy target：
+
+```typescript
+// modern.config.ts
+dev: {
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',  // ← 改為後端位址
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' },
+      },
+    },
+  },
+},
+```
+
+### 本地覆蓋設定（modern.config.local.*）
+
+Modern.js 支援 local override，在本機建立 `modern.config.local.ts`（已加入 `.gitignore`）可覆蓋任意設定，不影響其他人的開發環境：
+
+```typescript
+// modern.config.local.ts（只在本機生效）
+import { defineConfig } from '@modern-js/app-tools';
+
+export default defineConfig({
+  dev: {
+    port: 8080,  // 改本機 port
+  },
+});
+```
+
+---
+
 ## 安装与启动
 
 ### 1. 安装依赖
