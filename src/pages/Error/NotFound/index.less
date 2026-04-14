@@ -1,0 +1,211 @@
+// ============================================================
+// NotFound (404) Page Styles
+// 沿用 Welcome 頁的設計語言：grid 背景、radial 光暈、shimmer 動畫
+// ============================================================
+
+@keyframes float-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes grid-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes spin-orbit {
+  from { transform: rotate(0deg) translateX(52px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(52px) rotate(-360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--semi-color-primary) 35%, transparent); }
+  50%       { box-shadow: 0 0 0 12px color-mix(in srgb, var(--semi-color-primary) 0%, transparent); }
+}
+
+// ── 頁面容器 ─────────────────────────────────────────────
+.not-found-page {
+  position: relative;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--semi-color-bg-0);
+
+  // 背景網格紋理（與 Welcome 完全一致）
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--semi-color-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--semi-color-border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.4;
+    pointer-events: none;
+    animation: grid-fade 1s ease forwards;
+  }
+
+  // 頂部光暈
+  &::after {
+    content: '';
+    position: absolute;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--semi-color-primary) 10%, transparent) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+}
+
+// ── 內容區 ───────────────────────────────────────────────
+.not-found-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 64px 32px;
+  max-width: 520px;
+  width: 100%;
+}
+
+// ── 404 數字 ─────────────────────────────────────────────
+.not-found-code {
+  font-size: clamp(100px, 18vw, 160px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  background: linear-gradient(
+    130deg,
+    var(--semi-color-primary) 0%,
+    #7b93ff 50%,
+    var(--semi-color-primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation:
+    float-up 0.6s ease both,
+    shimmer 4s linear infinite;
+  user-select: none;
+}
+
+// ── 星球插圖 ─────────────────────────────────────────────
+.not-found-orbit {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 8px 0 32px;
+  animation: float-up 0.6s ease 0.1s both;
+
+  // 讓整個插圖上下漂浮
+  & > * {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.orbit-ring {
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--semi-color-primary) 30%, transparent);
+  animation: float 4s ease-in-out infinite;
+
+  &--outer {
+    inset: 0;
+  }
+
+  &--inner {
+    inset: 22px;
+    border-color: color-mix(in srgb, var(--semi-color-primary) 20%, transparent);
+    animation-delay: -1s;
+  }
+}
+
+.orbit-planet {
+  inset: 34px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--semi-color-primary) 60%, transparent) 0%,
+    color-mix(in srgb, var(--semi-color-primary) 25%, transparent) 100%
+  );
+  border: 1.5px solid color-mix(in srgb, var(--semi-color-primary) 40%, transparent);
+  animation: float 4s ease-in-out infinite, pulse-glow 3s ease-in-out infinite;
+  backdrop-filter: blur(2px);
+}
+
+// 環繞小圓點
+.orbit-dot {
+  // 重置 inset，改為絕對定位從中心出發
+  inset: unset;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--semi-color-primary);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--semi-color-primary) 70%, transparent);
+  animation: spin-orbit 3s linear infinite;
+  transform-origin: 0 0;
+}
+
+// ── 標題 ─────────────────────────────────────────────────
+.not-found-title {
+  // 覆蓋 Semi Typography 預設 margin
+  &.semi-typography {
+    color: var(--semi-color-text-0) !important;
+    margin: 0 0 12px !important;
+    font-weight: 700 !important;
+  }
+  animation: float-up 0.6s ease 0.2s both;
+}
+
+// ── 副標題 ───────────────────────────────────────────────
+.not-found-subtitle {
+  &.semi-typography {
+    color: var(--semi-color-text-2) !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+  }
+  animation: float-up 0.6s ease 0.25s both;
+}
+
+// ── 操作按鈕 ─────────────────────────────────────────────
+.not-found-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  animation: float-up 0.6s ease 0.35s both;
+}

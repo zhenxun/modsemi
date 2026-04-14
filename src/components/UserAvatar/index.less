@@ -1,0 +1,66 @@
+// ── UserAvatar 觸發器 ─────────────────────────────────────
+
+.ua-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.2s ease, opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.85;
+    box-shadow: 0 0 0 3px var(--semi-color-primary-light-hover);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--semi-color-primary-light-active);
+  }
+}
+
+.ua-avatar {
+  cursor: pointer;
+}
+
+// ── Dropdown 選單樣式 ─────────────────────────────────────
+
+.ua-menu {
+  min-width: 200px !important;
+}
+
+// 使用者資訊區塊
+.ua-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px 12px;
+}
+
+.ua-user-avatar {
+  flex-shrink: 0;
+}
+
+.ua-user-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.ua-user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--semi-color-text-0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ua-user-email {
+  font-size: 12px;
+  color: var(--semi-color-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
