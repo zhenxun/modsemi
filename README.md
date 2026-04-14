@@ -23,6 +23,30 @@
 
 ---
 
+## 快速開始
+
+### 方式一：使用 degit（推薦，不保留 git 歷史）
+
+```bash
+npx degit your-username/modsemi my-app
+cd my-app
+pnpm install
+pnpm dev
+```
+
+### 方式二：使用 GitHub Template
+
+點擊右上角 **"Use this template"** 建立自己的 repo，再 clone 下來：
+
+```bash
+git clone https://github.com/your-username/my-app.git
+cd my-app
+pnpm install
+pnpm dev
+```
+
+---
+
 ## 安装与启动
 
 ### 1. 安装依赖
