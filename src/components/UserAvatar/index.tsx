@@ -64,24 +64,15 @@ export function UserAvatar() {
 
       <Dropdown.Divider />
 
-      <Dropdown.Item
-        type="danger"
-        icon={<IconExit />}
-        onClick={handleLogout}
-      >
+      <Dropdown.Item type="danger" icon={<IconExit />} onClick={handleLogout}>
         登出
       </Dropdown.Item>
     </Dropdown.Menu>
   );
 
   return (
-    <Dropdown
-      trigger="click"
-      position="bottomRight"
-      render={menu}
-      clickToHide
-    >
-      <div className="ua-trigger" role="button" tabIndex={0} aria-label="使用者選單">
+    <Dropdown trigger="click" position="bottomRight" render={menu} clickToHide>
+      <button className="ua-trigger" type="button" aria-label="使用者選單">
         <Avatar
           size="small"
           color="blue"
@@ -90,7 +81,7 @@ export function UserAvatar() {
         >
           {getInitials(name)}
         </Avatar>
-      </div>
+      </button>
     </Dropdown>
   );
 }

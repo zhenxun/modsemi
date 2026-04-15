@@ -31,7 +31,8 @@ export function SideLayout({
   headerExtra,
 }: SideLayoutProps) {
   const navigate = useNavigate();
-  const { firstLevelMenus, selectedKeys, openKeys, breadcrumbs } = useMenuData();
+  const { firstLevelMenus, selectedKeys, openKeys, breadcrumbs } =
+    useMenuData();
   const { fixedHeader, showBreadcrumb } = useLayoutStore();
 
   const navItems = toNavItems(firstLevelMenus);

@@ -36,7 +36,10 @@ function buildBreadcrumbs(pathname: string): BreadcrumbItem[] {
     }
     if (item.children) {
       for (const child of item.children) {
-        if (pathname === child.itemKey || pathname.startsWith(`${child.itemKey}/`)) {
+        if (
+          pathname === child.itemKey ||
+          pathname.startsWith(`${child.itemKey}/`)
+        ) {
           return [
             { path: item.itemKey, text: item.text },
             { path: child.itemKey, text: child.text },
@@ -114,23 +117,58 @@ function buildMenuData(
 
   switch (layoutMode) {
     case 'side':
-      return { ...base, firstLevelMenus: routes, secondLevelMenus: [], selectedKeys, openKeys, activeFirstKey };
+      return {
+        ...base,
+        firstLevelMenus: routes,
+        secondLevelMenus: [],
+        selectedKeys,
+        openKeys,
+        activeFirstKey,
+      };
 
     case 'top':
-      return { ...base, firstLevelMenus: routes, secondLevelMenus: [], selectedKeys, openKeys: [], activeFirstKey };
+      return {
+        ...base,
+        firstLevelMenus: routes,
+        secondLevelMenus: [],
+        selectedKeys,
+        openKeys: [],
+        activeFirstKey,
+      };
 
     case 'mix': {
       const activeParent = routes.find(r => r.itemKey === activeFirstKey);
-      return { ...base, firstLevelMenus: routes, secondLevelMenus: activeParent?.children ?? [], selectedKeys, openKeys, activeFirstKey };
+      return {
+        ...base,
+        firstLevelMenus: routes,
+        secondLevelMenus: activeParent?.children ?? [],
+        selectedKeys,
+        openKeys,
+        activeFirstKey,
+      };
     }
 
     case 'double': {
       const activeParent = routes.find(r => r.itemKey === doubleFirstKey);
-      return { ...base, firstLevelMenus: routes, secondLevelMenus: activeParent?.children ?? [], selectedKeys, openKeys, activeFirstKey: doubleFirstKey };
+      return {
+        ...base,
+        firstLevelMenus: routes,
+        secondLevelMenus: activeParent?.children ?? [],
+        selectedKeys,
+        openKeys,
+        activeFirstKey: doubleFirstKey,
+      };
     }
 
     default:
-      return { ...base, firstLevelMenus: routes, secondLevelMenus: [], selectedKeys, openKeys, activeFirstKey };
+      return {
+        ...base,
+        firstLevelMenus: routes,
+        secondLevelMenus: [],
+        selectedKeys,
+        openKeys,
+        activeFirstKey,
+      };
   }
 }
 
@@ -159,12 +197,22 @@ export function useMenuData(): MenuDataResult {
   }, [access]);
 
   return useMemo(() => {
-    const { selectedKeys, openKeys } = computeSelectedAndOpen(pathname, visibleRoutes);
+    const { selectedKeys, openKeys } = computeSelectedAndOpen(
+      pathname,
+      visibleRoutes,
+    );
     const activeFirstKey = findFirstLevelKey(pathname, visibleRoutes);
     const breadcrumbs = buildBreadcrumbs(pathname);
 
     return {
-      ...buildMenuData(layoutMode, activeFirstKey, selectedKeys, openKeys, doubleFirstKey, visibleRoutes),
+      ...buildMenuData(
+        layoutMode,
+        activeFirstKey,
+        selectedKeys,
+        openKeys,
+        doubleFirstKey,
+        visibleRoutes,
+      ),
       breadcrumbs,
     };
   }, [layoutMode, pathname, doubleFirstKey, visibleRoutes]);

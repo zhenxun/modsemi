@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import './index.less';
 
-
 function GoogleIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -98,7 +97,6 @@ export default function LoginPage() {
               配置驅動，開箱即用，四種佈局隨心切換。
             </p>
           </div>
-
         </div>
 
         {/* 底部版權 */}

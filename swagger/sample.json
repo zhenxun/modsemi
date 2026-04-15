@@ -188,7 +188,11 @@
         "properties": {
           "id": { "type": "integer", "example": 1 },
           "name": { "type": "string", "example": "Admin" },
-          "email": { "type": "string", "format": "email", "example": "admin@modsemi.dev" },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "admin@modsemi.dev"
+          },
           "roles": {
             "type": "array",
             "items": { "type": "string" },

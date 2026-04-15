@@ -31,8 +31,13 @@ export function DoubleLayout({
   headerExtra,
 }: DoubleLayoutProps) {
   const navigate = useNavigate();
-  const { secondLevelMenus, selectedKeys, openKeys, activeFirstKey, breadcrumbs } =
-    useMenuData();
+  const {
+    secondLevelMenus,
+    selectedKeys,
+    openKeys,
+    activeFirstKey,
+    breadcrumbs,
+  } = useMenuData();
   const { fixedHeader, showBreadcrumb, doubleFirstKey, setDoubleFirstKey } =
     useLayoutStore();
 

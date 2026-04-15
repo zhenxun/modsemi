@@ -4,9 +4,19 @@ import {
   IconSidebar,
   IconVersionStroked,
 } from '@douyinfe/semi-icons';
-import { Divider, SideSheet, Switch, Tooltip, Typography } from '@douyinfe/semi-ui-19';
+import {
+  Divider,
+  SideSheet,
+  Switch,
+  Tooltip,
+  Typography,
+} from '@douyinfe/semi-ui-19';
 import { useEffect } from 'react';
-import { type ColorTheme, type LayoutMode, useLayoutStore } from '../../store/layoutStore';
+import {
+  type ColorTheme,
+  type LayoutMode,
+  useLayoutStore,
+} from '../../store/layoutStore';
 
 const { Title, Text } = Typography;
 
@@ -127,9 +137,18 @@ function applyColorTheme(theme: ColorTheme, isDark: boolean) {
   b.style.setProperty('--semi-color-primary-hover', scale.primaryHover);
   b.style.setProperty('--semi-color-primary-active', scale.primaryActive);
   b.style.setProperty('--semi-color-primary-disabled', scale.primaryDisabled);
-  b.style.setProperty('--semi-color-primary-light-default', scale.primaryLightDefault);
-  b.style.setProperty('--semi-color-primary-light-hover', scale.primaryLightHover);
-  b.style.setProperty('--semi-color-primary-light-active', scale.primaryLightActive);
+  b.style.setProperty(
+    '--semi-color-primary-light-default',
+    scale.primaryLightDefault,
+  );
+  b.style.setProperty(
+    '--semi-color-primary-light-hover',
+    scale.primaryLightHover,
+  );
+  b.style.setProperty(
+    '--semi-color-primary-light-active',
+    scale.primaryLightActive,
+  );
   b.style.setProperty('--semi-color-focus-border', scale.primary);
   b.style.setProperty('--semi-color-link', scale.primary);
   b.style.setProperty('--semi-color-link-hover', scale.primaryHover);
@@ -146,10 +165,30 @@ interface LayoutOption {
 }
 
 const LAYOUT_OPTIONS: LayoutOption[] = [
-  { value: 'side', label: '側邊導航', icon: <IconSidebar size="large" />, description: '左側固定選單' },
-  { value: 'top', label: '頂部導航', icon: <IconColumnsStroked size="large" />, description: '頂部水平選單' },
-  { value: 'mix', label: '混合導航', icon: <IconGridView size="large" />, description: '頂部一級 + 左側二級' },
-  { value: 'double', label: '雙欄導航', icon: <IconVersionStroked size="large" />, description: '圖示欄 + 文字欄' },
+  {
+    value: 'side',
+    label: '側邊導航',
+    icon: <IconSidebar size="large" />,
+    description: '左側固定選單',
+  },
+  {
+    value: 'top',
+    label: '頂部導航',
+    icon: <IconColumnsStroked size="large" />,
+    description: '頂部水平選單',
+  },
+  {
+    value: 'mix',
+    label: '混合導航',
+    icon: <IconGridView size="large" />,
+    description: '頂部一級 + 左側二級',
+  },
+  {
+    value: 'double',
+    label: '雙欄導航',
+    icon: <IconVersionStroked size="large" />,
+    description: '圖示欄 + 文字欄',
+  },
 ];
 
 // ── 子元件 ───────────────────────────────────────────────
@@ -175,20 +214,31 @@ function LayoutCard({
         padding: '12px 8px',
         borderRadius: 8,
         border: `2px solid ${active ? 'var(--semi-color-primary)' : 'var(--semi-color-border)'}`,
-        backgroundColor: active ? 'var(--semi-color-primary-light-default)' : 'var(--semi-color-bg-1)',
+        backgroundColor: active
+          ? 'var(--semi-color-primary-light-default)'
+          : 'var(--semi-color-bg-1)',
         cursor: 'pointer',
         transition: 'all 0.2s',
         flex: 1,
       }}
     >
-      <span style={{ color: active ? 'var(--semi-color-primary)' : 'var(--semi-color-text-2)', fontSize: 20 }}>
+      <span
+        style={{
+          color: active
+            ? 'var(--semi-color-primary)'
+            : 'var(--semi-color-text-2)',
+          fontSize: 20,
+        }}
+      >
         {option.icon}
       </span>
       <Text
         strong={active}
         style={{
           fontSize: 12,
-          color: active ? 'var(--semi-color-primary)' : 'var(--semi-color-text-1)',
+          color: active
+            ? 'var(--semi-color-primary)'
+            : 'var(--semi-color-text-1)',
           textAlign: 'center',
           lineHeight: 1.3,
         }}
@@ -238,14 +288,16 @@ function ColorSwatch({
             background: tokens.swatch,
             boxShadow: active
               ? `0 0 0 2px var(--semi-color-bg-0), 0 0 0 4px ${tokens.swatch}`
-              : `0 0 0 2px transparent`,
+              : '0 0 0 2px transparent',
             transition: 'box-shadow 0.2s',
           }}
         />
         <Text
           style={{
             fontSize: 11,
-            color: active ? 'var(--semi-color-primary)' : 'var(--semi-color-text-2)',
+            color: active
+              ? 'var(--semi-color-primary)'
+              : 'var(--semi-color-text-2)',
             fontWeight: active ? 600 : 400,
             whiteSpace: 'nowrap',
           }}
@@ -261,7 +313,12 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <Text
       type="tertiary"
-      style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}
+      style={{
+        fontSize: 12,
+        fontWeight: 600,
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
+      }}
     >
       {children}
     </Text>
@@ -278,7 +335,14 @@ function SettingRow({
   children: React.ReactNode;
 }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '10px 0',
+      }}
+    >
       <div>
         <Text style={{ fontSize: 14 }}>{label}</Text>
         {description && (
@@ -323,7 +387,11 @@ export function SettingDrawer() {
 
   return (
     <SideSheet
-      title={<Title heading={5} style={{ margin: 0 }}>佈局設定</Title>}
+      title={
+        <Title heading={5} style={{ margin: 0 }}>
+          佈局設定
+        </Title>
+      }
       visible={settingDrawerOpen}
       onCancel={() => setSettingDrawerOpen(false)}
       footer={null}
@@ -347,16 +415,25 @@ export function SettingDrawer() {
 
       {/* 色系主題 */}
       <SectionTitle>色系主題</SectionTitle>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: 14, marginBottom: 4 }}>
-        {(Object.entries(COLOR_THEMES) as [ColorTheme, ColorThemeTokens][]).map(([key, tokens]) => (
-          <ColorSwatch
-            key={key}
-            themeKey={key}
-            tokens={tokens}
-            active={colorTheme === key}
-            onClick={() => setColorTheme(key)}
-          />
-        ))}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          marginTop: 14,
+          marginBottom: 4,
+        }}
+      >
+        {(Object.entries(COLOR_THEMES) as [ColorTheme, ColorThemeTokens][]).map(
+          ([key, tokens]) => (
+            <ColorSwatch
+              key={key}
+              themeKey={key}
+              tokens={tokens}
+              active={colorTheme === key}
+              onClick={() => setColorTheme(key)}
+            />
+          ),
+        )}
       </div>
 
       <Divider style={{ margin: '20px 0' }} />
@@ -380,10 +457,16 @@ export function SettingDrawer() {
       {/* 介面配置 */}
       <SectionTitle>介面配置</SectionTitle>
       <SettingRow label="固定頂欄" description="頁面捲動時 Header 保持固定">
-        <Switch checked={fixedHeader} onChange={checked => setFixedHeader(checked)} />
+        <Switch
+          checked={fixedHeader}
+          onChange={checked => setFixedHeader(checked)}
+        />
       </SettingRow>
       <SettingRow label="顯示麵包屑" description="在內容區頂部顯示路徑導覽">
-        <Switch checked={showBreadcrumb} onChange={checked => setShowBreadcrumb(checked)} />
+        <Switch
+          checked={showBreadcrumb}
+          onChange={checked => setShowBreadcrumb(checked)}
+        />
       </SettingRow>
     </SideSheet>
   );

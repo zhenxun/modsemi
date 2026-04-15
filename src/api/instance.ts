@@ -13,7 +13,9 @@ import axios, {
 
 // ── 環境設定 ────────────────────────────────────────────────
 // Modern.js 透過 .env 檔案注入環境變數，於 modern.config.ts 中設定 source.define
-const BASE_URL = (typeof process !== 'undefined' && process.env.MODERN_APP_API_BASE_URL) || '/api';
+const BASE_URL =
+  (typeof process !== 'undefined' && process.env.MODERN_APP_API_BASE_URL) ||
+  '/api';
 
 // ── 建立 instance ──────────────────────────────────────────
 export const apiInstance = axios.create({
@@ -78,9 +80,7 @@ apiInstance.interceptors.response.use(
  * orval mutator — 供 orval.config.ts 的 `mutator` 欄位引用。
  * orval 生成的每個 API 函式會呼叫此函式發送請求。
  */
-export const customInstance = <T>(
-  config: AxiosRequestConfig,
-): Promise<T> => {
+export const customInstance = <T>(config: AxiosRequestConfig): Promise<T> => {
   return apiInstance(config).then(response => response.data as T);
 };
 

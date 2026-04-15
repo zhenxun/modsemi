@@ -44,10 +44,10 @@ export function useAccess(): AccessConfig {
 
   return {
     isAdmin,
-    canViewDashboard: true,    // 所有登入使用者皆可存取
+    canViewDashboard: true, // 所有登入使用者皆可存取
     canViewForm: true,
     canViewList: true,
     canViewDetail: true,
-    canViewSettings: isAdmin,  // 僅管理員可見
+    canViewSettings: isAdmin, // 僅管理員可見
   };
 }
